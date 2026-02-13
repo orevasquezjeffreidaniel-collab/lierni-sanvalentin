@@ -2,140 +2,114 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Invitación para Lierni 💖</title>
-
 <style>
 body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  text-align:center;
-  background: linear-gradient(135deg,#ff4e8a,#ff9ac6);
-  color:white;
-  overflow:hidden;
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(135deg,#ff758c,#ff7eb3);
+text-align:center;
+padding:40px;
+color:#333;
 }
-
 .container{
-  margin-top:60px;
-  position:relative;
-  z-index:2;
-  padding:20px;
+background:white;
+padding:35px;
+border-radius:25px;
+max-width:520px;
+margin:auto;
+box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+h1{ color:#e91e63; }
+
+.section{
+display:none;
+margin-top:20px;
 }
 
 button{
-  padding:12px 20px;
-  margin:10px;
-  border:none;
-  border-radius:20px;
-  background:white;
-  color:#ff4e8a;
-  font-size:16px;
-  cursor:pointer;
-  transition:0.3s;
+display:block;
+width:100%;
+padding:14px;
+margin:12px 0;
+border:none;
+border-radius:12px;
+font-size:16px;
+cursor:pointer;
+background:#e91e63;
+color:white;
+transition:0.3s;
 }
-
 button:hover{
-  background:#ffe6f0;
-  transform:scale(1.05);
-}
-
-.hidden{
-  display:none;
-}
-
-.heart{
-  position: fixed;
-  bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
-}
-
-@keyframes floatUp{
-  0%{ transform: translateY(0); opacity:1; }
-  100%{ transform: translateY(-100vh); opacity:0; }
+background:#c2185b;
+transform:scale(1.05);
 }
 </style>
 </head>
-
 <body>
 
-<audio id="musica" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c8a4d6d65.mp3?filename=romantic-love-11743.mp3" type="audio/mp3">
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
 
-  <h1>💖 Hola Lierni 💖</h1>
-  <p>Tengo algo muy especial para ti...</p>
-  <button onclick="iniciar()">Comenzar 💕</button>
+<h1>Lierni 💘</h1>
 
-  <div id="p1" class="hidden">
-    <h2>¿Quieres ser mi San Valentín?</h2>
-    <button onclick="mostrarP2()">Sí 💘</button>
-    <button onclick="moverNo(this)">No 😜</button>
-  </div>
+<p>
+Es la primera vez que realmente quiero celebrar este día con alguien.<br>
+Nunca antes lo había celebrado con nadie…<br><br>
+Pero apareciste tú y te volviste alguien muy importante para mí 💫<br><br>
+Por eso este 14 quiero vivirlo contigo ❤️
+</p>
 
-  <div id="p2" class="hidden">
-    <h2>¿Qué plan prefieres?</h2>
-    <button onclick="mostrarP3('Cena romántica 🍝')">Cena romántica 🍝</button>
-    <button onclick="mostrarP3('Película juntos 🎬')">Película juntos 🎬</button>
-    <button onclick="mostrarP3('Salida sorpresa 🌹')">Salida sorpresa 🌹</button>
-  </div>
+<div id="q1" class="section">
+<h3>¿Aceptas ser mi cita este San Valentín? 🌹</h3>
+<button onclick="showNext(1)">SI, OBVIO 💖</button>
+<button onclick="showNext(1)">YA SABES MI RESPUESTA 😌</button>
+<button onclick="showNext(1)">NO 🙈</button>
+</div>
 
-  <div id="p3" class="hidden">
-    <h2>¿A qué hora nos vemos?</h2>
-    <button onclick="final()">6:00 pm</button>
-    <button onclick="final()">8:00 pm</button>
-    <button onclick="final()">10:00 pm</button>
-  </div>
+<div id="q2" class="section">
+<h3>Elige cómo quieres que celebremos 👑</h3>
+<button onclick="showNext(2)">🌅 Paseo romántico</button>
+<button onclick="showNext(2)">🍽️ Almuerzo especial</button>
+<button onclick="showNext(2)">🎁 Pase libre (tú eliges)</button>
+</div>
 
-  <div id="fin" class="hidden">
-    <h2>💞 Será el mejor día contigo 💞</h2>
-    <p>Gracias por aceptar 💖</p>
-  </div>
+<div id="q3" class="section">
+<h3>¿Cómo te gustaría terminar el día? 😏✨</h3>
+<button onclick="showNext(3)">💋 Un beso que lo haga especial</button>
+<button onclick="showNext(3)">🌙 Dormir juntos</button>
+<button onclick="showNext(3)">🔥 Que nuestro instinto decida</button>
+</div>
+
+<div id="final" class="section">
+<h3>Entonces ya está decidido 💘</h3>
+<p>
+Gracias por dejarme vivir mi primer 14 de febrero real contigo.<br><br>
+Prometo que será un día que marque el inicio de algo muy bonito ❤️
+</p>
+</div>
 
 </div>
 
 <script>
+document.getElementById("q1").style.display = "block";
 
-function iniciar(){
-  document.getElementById("musica").play();
-  document.getElementById("p1").classList.remove("hidden");
+function showNext(step){
+if(step === 1){
+document.getElementById("q1").style.display = "none";
+document.getElementById("q2").style.display = "block";
 }
-
-function mostrarP2(){
-  document.getElementById("p1").classList.add("hidden");
-  document.getElementById("p2").classList.remove("hidden");
+if(step === 2){
+document.getElementById("q2").style.display = "none";
+document.getElementById("q3").style.display = "block";
 }
-
-function mostrarP3(){
-  document.getElementById("p2").classList.add("hidden");
-  document.getElementById("p3").classList.remove("hidden");
+if(step === 3){
+document.getElementById("q3").style.display = "none";
+document.getElementById("final").style.display = "block";
 }
-
-function final(){
-  document.getElementById("p3").classList.add("hidden");
-  document.getElementById("fin").classList.remove("hidden");
 }
-
-function moverNo(boton){
-  boton.style.position="absolute";
-  boton.style.left=Math.random()*80+"%";
-  boton.style.top=Math.random()*80+"%";
-}
-
-function crearCorazon(){
-  const heart=document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML="💖";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.fontSize=Math.random()*20+20+"px";
-  document.body.appendChild(heart);
-  setTimeout(()=>{heart.remove();},6000);
-}
-
-setInterval(crearCorazon,500);
-
 </script>
 
 </body>
